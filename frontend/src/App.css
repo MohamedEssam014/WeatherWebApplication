@@ -1,0 +1,189 @@
+/* --- Root Theme Variables --- */
+:root {
+  --color-bg-dark: #0f2027;
+  --color-bg-dark-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --color-bg-light: #f0f4f8;
+  --color-bg-light-gradient: linear-gradient(135deg, #d9e4f5, #f6f9fc);
+
+  --color-primary: #4facfe;
+  --color-secondary: #00f2fe;
+  --color-accent: #f0ad4e;
+
+  --text-light: #f5f5f5;
+  --text-dark: #222222;
+}
+
+/* --- Global Styles & Background --- */
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  background: var(--color-bg-dark-gradient);
+  color: var(--text-light);
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Light Mode (auto-detect) */
+@media (prefers-color-scheme: light) {
+  body {
+    background: var(--color-bg-light-gradient);
+    color: var(--text-dark);
+  }
+
+  .weather-widget {
+    background-color: rgba(255, 255, 255, 0.75);
+    color: var(--text-dark);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .search-bar input {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-dark);
+  }
+}
+
+/* --- Root Element Centering --- */
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* --- Main Weather Widget --- */
+.weather-widget {
+  max-width: 650px;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(30, 30, 30, 0.7);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.weather-widget:hover {
+  transform: translateY(-4px);
+}
+
+/* --- Search Bar --- */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.search-bar input {
+  font-size: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: inherit;
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.search-bar button {
+  font-size: 1rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.search-bar button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.5);
+}
+
+/* --- Weather Display Layout --- */
+.weather-display {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- Current Weather --- */
+.current-weather {
+  flex: 2;
+  text-align: center;
+}
+
+.current-weather h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.current-weather .icon-wrapper {
+  font-size: 5rem;
+  margin: 0.5rem 0;
+}
+
+.current-weather .temperature {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.current-weather .condition {
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-top: 0.3rem;
+}
+
+.extra-details {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+}
+
+/* --- Forecast Panel --- */
+.forecast-panel {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 1.2rem;
+}
+
+.forecast-panel h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.forecast-day {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.4rem 0;
+  font-size: 0.9rem;
+}
+
+.forecast-day:last-child {
+  border-bottom: none;
+}
+
+.forecast-day .icon-wrapper-small {
+  font-size: 2rem;
+}
