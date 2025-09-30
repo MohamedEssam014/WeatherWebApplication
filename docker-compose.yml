@@ -1,0 +1,51 @@
+
+services:
+  # Redis Caching Service
+  redis:
+    image: "redis:7-alpine"
+    container_name: weather_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+  # Backend API Service (FastAPI)
+  backend:
+    container_name: weather_backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    
+    env_file:
+      - .env  # Load environment variables from .env file
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+# frontend production
+
+  frontend_prod:
+    container_name: weather_frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile_prod
+    ports:
+      - "8085:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
+  
+volumes:
+  redis_data:
